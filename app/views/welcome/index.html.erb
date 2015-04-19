@@ -1,0 +1,7 @@
+<H1>Hello stranger!</H1>
+
+<p>You may <%= link_to "SIGN UP", new_user_path %></p>
+<% if @user %>
+  <%= link_to "my lists", user_lists_path(@user) %>
+<% end %>
+

@@ -1,0 +1,12 @@
+<h2><%= @list.title %></h2>
+
+<%= form_for @item, url: user_list_items_path(@user.id, @list.id) do |f| %>
+  <%= f.text_field :todo %>
+  <%= f.submit "Add item" %>
+<% end %>
+
+<ul>
+  <% @items.each do |item| %>
+    <li><%= item.todo %></li>
+  <% end %>
+</ul>

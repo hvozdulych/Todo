@@ -1,0 +1,5 @@
+<h2>Enter Title for list</h2>
+<%= form_for @list, url: user_lists_path do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit "save" %>
+<% end %>
