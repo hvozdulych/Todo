@@ -27,6 +27,24 @@ class ListsController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:user_id])
+    @list = @user.lists.find(params[:id])
+
+    if @list.update_attributes(list_params)
+      redirect_to user_list_path
+    else
+      render 'show'
+    end
+  end
+
+  def destroy
+    @user  = current_user
+    @list  = @user.lists.find(params[:id])
+
+    @list.destroy
+    redirect_to user_lists_path
+  end
 
   private
 
