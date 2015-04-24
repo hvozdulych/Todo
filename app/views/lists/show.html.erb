@@ -13,7 +13,7 @@
 
 <ul>
   <% @items.each do |item| %>
-    <li><%= item.todo %></li>
+    <li><%= item.todo %><%= link_to "delete", user_list_item_path(@user.id, @list.id, item.id), method: :delete %></li>
   <% end %>
 </ul>
 

@@ -15,6 +15,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    @list = @user.lists.find(params[:list_id])
+    @item = @list.items.find(params[:id])
+
+    @item.destroy
+    redirect_to user_list_path(@user.id, @list.id)
+  end
+
 
 
   private
