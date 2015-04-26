@@ -1,0 +1,14 @@
+<h2>Edit Profile<h2>
+<%= form_for :profile, url: user_profile_path, method: "PUT" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br />
+  <%= f.label :surname %>
+  <%= f.text_field :surname %><br />
+  <%= f.label :age %>
+  <%= f.text_field :age %><br />
+  <%= f.label :male %>
+  <%= f.radio_button :genre, 'male' %>
+  <%= f.label :female %>
+  <%= f.radio_button :genre, 'female' %><br />
+  <%= f.submit "Save" %>
+<% end %>

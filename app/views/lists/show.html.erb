@@ -6,7 +6,7 @@
   <% end %>
 </div>
 
-<%= form_for @item, url: user_list_items_path(@user.id, @list.id) do |f| %>
+<%= form_for @item, url: user_list_items_path(@user.id, @list.id) do |f| %>  <!-- :url => {:controller => :items,  :action => "create", user_id: @user.id, list_id: @list.id} -->
   <%= f.text_field :todo %>
   <%= f.submit "Add item" %>
 <% end %>

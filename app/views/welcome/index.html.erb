@@ -1,6 +1,7 @@
 <% if @user %>
-  <h1>Hello <%= @user.name %></h1>
+  <h1>Hello <%= @user.login %></h1>
   <%= link_to "my lists", user_lists_path(@user) %>
+  <%= link_to "My Profile", user_profile_path(@user.id) %>
 <% else %>
   <h1>Hello stranger!</h1>
 <% end %>
