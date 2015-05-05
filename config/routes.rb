@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :friendships
+
+  get '/my_requests' => "friendships#my_requests", :as => "aloha"
+  post "/accept_friendship" => "friendships#accept_friendship"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

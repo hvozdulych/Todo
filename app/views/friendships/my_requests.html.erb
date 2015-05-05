@@ -1,0 +1,6 @@
+<h1>Incoming requests(<%= @incoming_requests.count %>)</h1>
+<ul>
+  <% @incoming_requests.each do |request| %>
+    <li><%= request.user.profile.name %> - <%= link_to "accept", accept_friendship_path(id: request.id), method: :post %></li>
+  <% end %>
+</ul>

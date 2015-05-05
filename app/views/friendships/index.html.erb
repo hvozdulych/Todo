@@ -2,3 +2,4 @@
 <% @friends.each do |friend| %>
   <p><%= link_to friend.profile.name, user_profile_path(friend.id) %></p>
 <% end %>
+<%= link_to "requests", aloha_path %>(<%= @incoming_requests.count %>)
