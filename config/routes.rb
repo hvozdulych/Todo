@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friendships
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

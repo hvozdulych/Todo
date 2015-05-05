@@ -2,6 +2,7 @@
   <h1>Hello <%= @user.login %></h1>
   <%= link_to "my lists", user_lists_path(@user) %>
   <%= link_to "My Profile", user_profile_path(@user.id) %>
+  <%= link_to "Users", users_path %>
 <% else %>
   <h1>Hello stranger!</h1>
 <% end %>

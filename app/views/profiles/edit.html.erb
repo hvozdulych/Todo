@@ -6,9 +6,9 @@
   <%= f.text_field :surname %><br />
   <%= f.label :age %>
   <%= f.text_field :age %><br />
-  <%= f.label :male %>
+  <%= f.label :genre_male, "Male" %>
   <%= f.radio_button :genre, 'male' %>
-  <%= f.label :female %>
+  <%= f.label :genre_female, "Female" %>
   <%= f.radio_button :genre, 'female' %><br />
   <%= f.submit "Save" %>
 <% end %>

@@ -1,0 +1,4 @@
+<h1>Friends</h1>
+<% @friends.each do |friend| %>
+  <p><%= link_to friend.profile.name, user_profile_path(friend.id) %></p>
+<% end %>

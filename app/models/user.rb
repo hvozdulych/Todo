@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :lists, dependent: :destroy
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
+
+  has_many :friendships, dependent: :destroy
+  has_many :friends, :through => :friendships
+
 end

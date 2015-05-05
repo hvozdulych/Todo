@@ -1,11 +1,12 @@
 <h1>My Profile</h1>
 <div>
-  <b>Name:</b> <%= @profile.name %><br />
-  <b>Surname:</b> <%= @profile.surname %><br />
+  <b>Name:</b> <%= @user.profile.name %><br />
+  <b>Surname:</b> <%= @user.profile.surname %><br />
   <b>Email:</b> <%= @user.email %><br />
   <b>Login:</b> <%= @user.login %><br />
-  <b>Age:</b> <%= @profile.age %><br />
-  <b>Genge:</b> <%= @profile.genre %><br />
+  <b>Age:</b> <%= @user.profile.age %><br />
+  <b>Genge:</b> <%= @user.profile.genre %><br />
 </div>
 <%= link_to "Edit registration data", edit_user_registration_path %>
 <%= link_to "Edit Profile data", edit_user_profile_path %>
+<%= link_to "My friends", friendships_path %>

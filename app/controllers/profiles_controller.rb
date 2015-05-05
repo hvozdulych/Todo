@@ -1,8 +1,6 @@
 class ProfilesController < ApplicationController
   def show
-    @user = current_user
-    @profile = @user.profile
-    puts @profile.inspect
+    @user = User.find(params[:user_id])
   end
 
   def edit
@@ -12,9 +10,8 @@ class ProfilesController < ApplicationController
 
   def update
     @user = current_user
-    @profile = @user.profile
 
-    if @profile.update_attributes(profile_params)
+    if @user.profile.update_attributes(profile_params)
       redirect_to user_profile_path
     end
   end
