@@ -1,13 +1,17 @@
 class FriendshipsController < ApplicationController
   
   def index
-    puts "cr = #{current_user.inspect}"
-    friends = Friendship.where(user_id: current_user.id)
-    p friends.inspect
+    friendships = Friendship.where(user_id: current_user.id, status: "active")
+    friendships2 = Friendship.where(friend_id: current_user.id, status: "active")
     @friends = []
-    friends.each do |friend|
-      @friends << User.find(friend.friend_id)
+    friendships.each do |friendship|
+      @friends << User.find(friendship.friend_id)
     end
+    friendships2.each do |friendship|
+      @friends << User.find(friendship.user_id)
+    end
+
+    @incoming_requests = Friendship.where(friend_id: current_user.id, status: "request")
   end
 
   def create
@@ -19,6 +23,21 @@ class FriendshipsController < ApplicationController
       flash[:error] = "Unable to add friend."
       redirect_to root_url
     end
+  end
+
+  # def update
+  #   @friendship = Friendship.find
+  # end
+
+  def my_requests
+    @incoming_requests = Friendship.where(friend_id: current_user.id, status: "request")
+  end
+
+  def accept_friendship
+    @friendship = Friendship.find(params[:id])
+    @friendship.status = "active"
+    @friendship.save
+    redirect_to friendships_path
   end
 
 
