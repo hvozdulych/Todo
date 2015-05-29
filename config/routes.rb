@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get '/my_requests' => "friendships#my_requests", :as => "aloha"
   post "/accept_friendship" => "friendships#accept_friendship"
+  delete "/reject_friendship" => "friendships#reject_friendship"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
