@@ -2,6 +2,12 @@ class ListsController < ApplicationController
   def index
     @user = current_user
     @lists = @user.lists.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json {render :json => {:lists => @lists, :user => @user} }
+    end
+    
   end
 
   def show

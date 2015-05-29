@@ -1,8 +1,8 @@
 <table>
-  <tr><th>N</th><th>email</th></tr>
+  <tr><th>Name</th><th>email</th></tr>
     <% @users.each do |user| %>
       <% unless user.id == current_user.id %>
-        <tr><td><%= user.id %></td><td><%= user.email %></td><td><%= link_to "add to friend", friendships_path(:friend_id => user.id), :method => "Post" %></td</tr>
+        <tr><td><%= user.profile.name %></td><td><%= user.email %></td><td><%= link_to "add to friend", friendships_path(:friend_id => user.id), :method => "Post" %></td</tr>
       <% end %>
     <% end %>
 </table>

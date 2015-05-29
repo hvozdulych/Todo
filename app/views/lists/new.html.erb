@@ -3,3 +3,4 @@
   <%= f.text_field :title %>
   <%= f.submit "save" %>
 <% end %>
+<p class="error-message" style="color: red;"><%= @list.errors.full_messages.first if @list.errors.any? %></p>

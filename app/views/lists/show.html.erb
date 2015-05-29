@@ -2,7 +2,7 @@
 <div class="edit-list-form">
   <%= form_for @list, :url => {:action => "update"} do |f| %>
     <%= f.text_field :title %>
-    <%= f.submit "Update list's title" %>
+    <%= f.submit "Update list's title", :class => "btn-title-upd" %>
   <% end %>
 </div>
 
@@ -26,3 +26,15 @@
 
 <%= link_to "see my all lists", user_lists_path %>
 <%= link_to "create new list", new_user_list_path %>
+
+<script type="text/javascript">
+  $('#list_title').keyup(function(){
+    if ($(this).val() == 0) {
+      $('.btn-title-upd').attr("disabled","disabled");
+    }
+    else {
+     $('.btn-title-upd').removeAttr("disabled");
+    }
+
+  });
+</script>
