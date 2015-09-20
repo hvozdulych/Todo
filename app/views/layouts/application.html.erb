@@ -5,20 +5,37 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <div id="user_nav">
+  <div class="wrapper">
+    <div class="header">
+      <%= link_to image_tag("logo.jpg", border: "0", class: "logo"), root_path %>
+      <!-- <p class="notice"><%= notice %></p> -->
+      <div id="user_nav" class="user_nav">
         <% if user_signed_in? %>
           Signed in as <%= current_user.email %>. Not you?
           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         <% else %>
+          <h1>Hello stranger!</h1>
           <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
         <% end %>
-  <%= yield %>
-  <%= link_to "Main page", root_path %>
+      </div>
+    </div>
 
+    <% if user_signed_in? %>
+      <div class="navigation">
+        <%= yield :navigation %>
+      </div>
+
+      <div class="content">
+        <%= yield %>
+      </div>
+    <% end %>
+
+    <%= yield :login %>
+
+
+  </div>
 </body>
 </html>

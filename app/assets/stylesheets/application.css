@@ -13,3 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, section, summary, time, mark, audio, video {
+margin:0; padding:0; border:0; outline:0; font-size:100%;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+input, button, a:focus {outline: none;}
+a {text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+.alert {position: absolute; top: 105%; left: 0; right: 0; padding: 0 5px; font-size: 12px; line-height: 20px;
+ font-weight: bold; text-align: center; border-radius: 5px; background-color: #f00; color: #fff;}
+
+body {margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: rgba(0, 0, 0, .2);}
+.wrapper {max-width: 1240px; min-height: 600px; margin: 10px auto; padding: 20px; border-radius: 20px; background-color: #fff;}
+.logo {float: left; width: 130px;}
+.header {position: relative; height: 90px; padding: 10px; background-color: #222;}
+.user_nav {float: right; color: #fff; font-size: 12px;}
+.user_nav a {color: #fff; font-weight: bold;}
+
+.navigation {float: left; min-width: 150px; width: 20%; max-width: 250px; height: 100%; background-color: #222;}
+.content {float: left; width: 76%; padding: 10px 2%;}
+
+.navigation a {display: block; width: 100%; line-height: 1.5; text-decoration: none; 
+  text-transform: uppercase; border-bottom: 1px solid #fff; text-indent: 5px; color: #fff;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.navigation a:hover {background-color: #fff; color: #222;}
+
+
+
+.login_form {position: relative; width: 50%; max-width: 400px;  margin: 20px auto 0;}
+.login_form:after {display: block;; clear: both; content: ""; height: 0;}
+.login_form h2 {text-align: center; font-size: 28px; text-transform: uppercase; margin-bottom: 10px;}
+.input {width: 100%; height: 40px; margin-bottom: 10px; padding: 0 15px; font-size: 18px; font-style: italic;
+  box-sizing: border-box; border: 1px solid #333; border-radius: 5px; color: #333;}
+.login_btn {display: block; margin: 0 auto 10px; width: 40%; height: 40px; font-size: 20px; line-height: 40px; 
+  font-weight: bold; text-transform: uppercase; border: none; border-radius: 10px; cursor: pointer; 
+  letter-spacing: 1px; color: #fff; background-color: #005F1A;}
+.login_btn:hover {box-shadow: inset 0 0 8px 1px #005F1A; background-color: #007721;}
+
+.remember_me {float: left;}
+.remember_checkbox {float: left; width: 16px; height: 16px; margin: 0 5px 0 0;}
+.remember_me_label {float: left; font-size: 15px; line-height: 16px; cursor: pointer;}
+.forgot {float: right; font-size: 15px; line-height: 16px;}

@@ -1,14 +1,27 @@
+<% if @item.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+ 
+    <ul>
+    <% @item.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h2><%= @list.title %></h2>
 <div class="edit-list-form">
   <%= form_for @list, :url => {:action => "update"} do |f| %>
     <%= f.text_field :title %>
-    <%= f.submit "Update list's title", :class => "btn-title-upd" %>
+    <%= f.submit "Update list title", :class => "btn-title-upd", :disabled => "disabled" %>
   <% end %>
 </div>
 
 <%= form_for @item, url: user_list_items_path(@user.id, @list.id) do |f| %>  <!-- :url => {:controller => :items,  :action => "create", user_id: @user.id, list_id: @list.id} -->
+
   <%= f.text_field :todo %>
-  <%= f.submit "Add item" %>
+  <%= f.submit "Add item", :class => "btn-add-item", :disabled => "disabled" %>
 <% end %>
 
 <ul>
@@ -28,8 +41,20 @@
 <%= link_to "create new list", new_user_list_path %>
 
 <script type="text/javascript">
+  
+  $('#item_todo').keyup(function(){
+    if ($('#item_todo').val().length > 0) {
+      $('.btn-add-item').removeAttr("disabled");
+    }
+    else {
+      $('.btn-add-item').attr("disabled","disabled");
+    }
+  });
+
+
+  var currentTitle = $('#list_title').val();
   $('#list_title').keyup(function(){
-    if ($(this).val() == 0) {
+    if ($(this).val() == 0 || $(this).val() == currentTitle ) {
       $('.btn-title-upd').attr("disabled","disabled");
     }
     else {
@@ -37,4 +62,16 @@
     }
 
   });
+
+
+  $.ajax({
+    url: "/items",
+    type: "POST",
+    data: {todo: "vasyaajax"},
+    success: function(resp){ 
+      alert("OKKK")
+    }
+  });
+
+
 </script>

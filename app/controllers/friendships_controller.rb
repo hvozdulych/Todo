@@ -1,7 +1,6 @@
 class FriendshipsController < ApplicationController
   
   def index
-<<<<<<< HEAD
     # friendships = Friendship.where(user_id: current_user.id, status: "active")
     # friendships2 = Friendship.where(friend_id: current_user.id, status: "active")
     # @friends = []
@@ -13,18 +12,7 @@ class FriendshipsController < ApplicationController
     # end
     friendships = Friendship.where(user_id: current_user.id, status: "active")
     @friends = User.where(id: friendships.map(&:friend_id))
-=======
-    friendships = Friendship.where(user_id: current_user.id, status: "active")
-    friendships2 = Friendship.where(friend_id: current_user.id, status: "active")
-    @friends = []
-    friendships.each do |friendship|
-      @friends << User.find(friendship.friend_id)
-    end
-    friendships2.each do |friendship|
-      @friends << User.find(friendship.user_id)
-    end
 
->>>>>>> master
     @incoming_requests = Friendship.where(friend_id: current_user.id, status: "request")
   end
 
@@ -47,18 +35,6 @@ class FriendshipsController < ApplicationController
   # def update
   #   @friendship = Friendship.find
   # end
-
-  def my_requests
-    @incoming_requests = Friendship.where(friend_id: current_user.id, status: "request")
-  end
-
-  def accept_friendship
-    @friendship = Friendship.find(params[:id])
-    @friendship.status = "active"
-    @friendship.save
-    redirect_to friendships_path
-  end
-
 
   def my_requests
     @incoming_requests = Friendship.where(friend_id: current_user.id, status: "request")

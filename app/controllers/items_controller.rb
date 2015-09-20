@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to user_list_path(@user.id, @list.id)
     else
-      render 'new'
+      redirect_to :back
     end
   end
 
