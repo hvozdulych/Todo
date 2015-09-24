@@ -1,7 +1,14 @@
 class ListsController < ApplicationController
-  def index
+  
+  before_action :set_current_user, only: [:index, :show, :new, :destroy]
+
+  def set_current_user
     @user = current_user
+  end
+
+  def index
     @lists = @user.lists.all
+    @list = List.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,26 +18,23 @@ class ListsController < ApplicationController
   end
 
   def show
-    @user  = current_user
     @list  = @user.lists.find(params[:id])
     @items = @list.items.all
     @item  = Item.new
   end
 
   def new
-    @user = current_user
     @list = @user.lists.new
   end
 
   def create
     @user = User.find(params[:user_id])
-    @list = @user.lists.new(list_params)
+    @list = @user.lists.create!(list_params)
 
-    if @list.save
-      redirect_to user_lists_path
-    else
-      render 'new'
-    end
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+      format.js
+    end  
   end
 
   def update
@@ -45,11 +49,16 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @user  = current_user
     @list  = @user.lists.find(params[:id])
-
     @list.destroy
-    redirect_to user_lists_path
+
+    respond_to do |format|
+      format.html { redirect_to action: :destroy }
+      format.js
+    end 
+
+    
+    
   end
 
   private

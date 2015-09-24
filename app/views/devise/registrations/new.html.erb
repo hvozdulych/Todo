@@ -1,56 +1,37 @@
-<h2>Sign aup</h2>
+<%= content_for :login do %>
+  <div class="devise_form">
+    <p class="alert"><%= alert %></p>
+    <h2>SIGN UP</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
-  </div>
+      <%= f.text_field :login, class: "input", placeholder: "Login" %>
+      <%= f.email_field :email, autofocus: true, class: "input", placeholder: "Email Address" %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+      <div class="field">
+        <% if @validatable %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", class: "input", placeholder: "Password" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-    
-  <%= f.fields_for :profile do |profile_f| %>
-    <div class="field">
-      <%= profile_f.label :name %><br />
-      <%= profile_f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= profile_f.label :surname %><br />
-      <%= profile_f.text_field :surname %>
-    </div>
-    <div class="field">
-      <%= profile_f.label :age %><br />
-      <%= profile_f.text_field :age %>
-    </div>
-    <div class="field">
-      Genge
-      <%= profile_f.label :genre_male, 'Male' %>
-      <%= profile_f.radio_button :genre, 'male' %>
-      <%= profile_f.label :genre_female, "Female" %>
-      <%= profile_f.radio_button :genre, 'female' %>
-    </div>
-  <% end %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input", placeholder: "Repeat Password" %>
+        
+      <%= f.fields_for :profile do |profile_f| %>
+        <%= profile_f.text_field :name, class: "input", placeholder: "Name" %>
+        <%= profile_f.text_field :surname, class: "input", placeholder: "Last Name" %>
+        <%= profile_f.number_field(:age, in: 1..80, step: 1, class: "input", placeholder: "Age") %>
+        <%= profile_f.label :genre_male, 'Male' %>
+        <%= profile_f.radio_button :genre, 'male' %>
+        <%= profile_f.label :genre_female, "Female" %>
+        <%= profile_f.radio_button :genre, 'female' %>
+      <% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+      <div class="actions">
+        <%= f.submit "Sign up", class: "login_btn" %>
+      </div>
+    <% end %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

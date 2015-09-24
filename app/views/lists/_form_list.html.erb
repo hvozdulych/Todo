@@ -1,6 +1,5 @@
-<h2>Enter Title for list</h2>
-<%= form_for @list, url: user_lists_path do |f| %>
+<%= form_for @list, url: user_lists_path, remote: true do |f| %>
   <%= f.text_field :title %>
-  <%= f.submit "save" %>
+  <%= f.submit "ssave", class: "new_list_btn" %>
 <% end %>
 <p class="error-message" style="color: red;"><%= @list.errors.full_messages.first if @list.errors.any? %></p>

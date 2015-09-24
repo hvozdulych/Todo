@@ -1,0 +1,7 @@
+<% content_for :navigation do %>
+  <%= link_to "Main page", root_path, :title => "Main page" %>
+  <%= link_to "my lists", user_lists_path(@user) %>
+  <%= link_to "My Profile", user_profile_path(@user.id) %>
+  <%= link_to "Users", users_path %>
+  <%= link_to "Friends", friendships_path %>
+<% end %>
