@@ -1,9 +1,6 @@
 <ul class="all_lists">
   <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.title, user_list_path(current_user, list)%>
-      <%= link_to "remove", user_list_path(current_user, list), method: :delete, remote: true, class: "remove_list" %>
-    </li>
+    <%= render "list", partial_list: list %>
   <% end %>
 </ul>
 <%= link_to "Add new list", new_user_list_path(current_user), id: "add_new_list", remote: true %>

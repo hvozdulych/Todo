@@ -1,35 +1,28 @@
 class ListsController < ApplicationController
-  
-  before_action :set_current_user, only: [:index, :show, :new, :destroy]
-
-  def set_current_user
-    @user = current_user
-  end
 
   def index
-    @lists = @user.lists.all
+    @lists = current_user.lists.all
     @list = List.new
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json {render :json => {:lists => @lists, :user => @user} }
+      format.json {render :json => {:lists => @lists, :user => current_user} }
     end
     
   end
 
   def show
-    @list  = @user.lists.find(params[:id])
+    @list  =current_user.lists.find(params[:id])
     @items = @list.items.all
     @item  = Item.new
   end
 
   def new
-    @list = @user.lists.new
+    @list =current_user.lists.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @list = @user.lists.create!(list_params)
+    @list = current_user.lists.create!(list_params)
 
     respond_to do |format|
       format.html { redirect_to action: :index }
@@ -38,8 +31,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:id])
+    @list =current_user.lists.find(params[:id])
 
     if @list.update_attributes(list_params)
       redirect_to user_list_path
@@ -49,7 +41,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list  = @user.lists.find(params[:id])
+    @list  =current_user.lists.find(params[:id])
     @list.destroy
 
     respond_to do |format|

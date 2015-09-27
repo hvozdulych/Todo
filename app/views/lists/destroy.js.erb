@@ -1,4 +1,1 @@
-  // $(".remove_list").click(function(){
-  //   console.log("click");
-  //   $(this).parent().remove();
-  // });
+$('a[href$="lists/<%= @list.id %>"]').parent("li").remove();

@@ -1,0 +1,4 @@
+<li>
+  <%= link_to partial_list.title, user_list_path(current_user, partial_list)%>
+  <%= link_to "(remove)", user_list_path(current_user, partial_list), method: :delete, remote: true, class: "remove_list" %>
+</li>
