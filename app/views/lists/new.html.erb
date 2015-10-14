@@ -1,0 +1,6 @@
+<h1>Create new List</h1>
+<%= form_for @list, url: user_lists_path do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit "save", class: "new_list_btn" %>
+<% end %>
+<p class="error-message" style="color: red;"><%= @list.errors.full_messages.first if @list.errors.any? %></p>

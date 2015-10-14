@@ -12,58 +12,29 @@
 
 <h2><%= @list.title %></h2>
 <div class="edit-list-form">
-  <%= form_for @list, :url => {:action => "update"} do |f| %>
+  <%= form_for([current_user, @list]) do |f| %>
     <%= f.text_field :title %>
-    <%= f.submit "Update list title", :class => "btn-title-upd", :disabled => "disabled" %>
+    <%= f.submit "Update list title", :class => "btn-title-upd", :disabled => true %>
   <% end %>
 </div>
 
-<%= form_for @item, url: user_list_items_path(@user.id, @list.id) do |f| %>  <!-- :url => {:controller => :items,  :action => "create", user_id: @user.id, list_id: @list.id} -->
-
+<%= form_for([current_user, @list, @item]) do |f| %> 
   <%= f.text_field :todo %>
-  <%= f.submit "Add item", :class => "btn-add-item", :disabled => "disabled" %>
+  <%= f.submit "Add item", :class => "btn-add-item", :disabled => true %>
 <% end %>
 
 <ul>
   <% @items.each do |item| %>
-    <li><%= item.todo %><%= link_to "delete", user_list_item_path(@user.id, @list.id, item.id), method: :delete %></li>
+    <li><%= item.todo %><%= link_to "delete", [current_user, @list, item], method: :delete %></li>
   <% end %>
 </ul>
 
 <div class="time">
   <p>Created: <%= @list.created_at %></p>
+  <p>Last updated: <%= @list.updated_at %></p>
 </div>
 
 
-<%= link_to 'delete', user_list_path, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-list-delete" %>
-
+<%= link_to 'delete this list', [current_user, @list], method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-list-delete" %>
 <%= link_to "see my all lists", user_lists_path %>
 <%= link_to "create new list", new_user_list_path %>
-
-<script type="text/javascript">
-  
-  $('#item_todo').keyup(function(){
-    if ($('#item_todo').val().length > 0) {
-      $('.btn-add-item').removeAttr("disabled");
-    }
-    else {
-      $('.btn-add-item').attr("disabled","disabled");
-    }
-  });
-
-
-  var currentTitle = $('#list_title').val();
-  $('#list_title').keyup(function(){
-    if ($(this).val() == 0 || $(this).val() == currentTitle ) {
-      $('.btn-title-upd').attr("disabled","disabled");
-    }
-    else {
-     $('.btn-title-upd').removeAttr("disabled");
-    }
-
-  });
-
-
-
-
-</script>
