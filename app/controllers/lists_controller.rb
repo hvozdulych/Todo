@@ -22,6 +22,7 @@ class ListsController < ApplicationController
   end
 
   def create
+    @lists = current_user.lists.all
     @list = current_user.lists.new(list_params)
 
     respond_to do |format|
@@ -43,6 +44,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    @lists = current_user.lists.all
     @list = current_user.lists.find(params[:id])
     @list.destroy
 

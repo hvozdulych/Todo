@@ -1,1 +1,2 @@
-$('a[href$="lists/<%= @list.id %>"]').parent("li").remove();
+$('#list_<%= @list.id %>').remove();
+$(".lists_counter_title").html('Item has been removed<br/>Now you have <%= pluralize(@lists.size, "item") %>');
