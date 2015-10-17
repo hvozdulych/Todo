@@ -1,0 +1,6 @@
+<h2>You have <span class="items_counter"><%= pluralize(@items.size, "todo item") %></span></h2>
+<ul class="all_items">
+  <% @items.each do |item| %>
+    <li id="li_item_<%= item.id %>"><%= item.todo %><%= link_to "delete", [current_user, @list, item], remote: true, method: :delete %></li>
+  <% end %>
+</ul>

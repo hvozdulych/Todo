@@ -1,0 +1,5 @@
+$("#li_item_<%= @item.id %>").remove();
+
+var count_items = parseInt($(".items_counter").html()) - 1;
+var new_count = count_items == 1 ? count_items + " todo item" : count_items + " todo items";
+$(".items_counter").html(new_count);

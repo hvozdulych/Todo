@@ -12,22 +12,18 @@
 
 <h2><%= @list.title %></h2>
 <div class="edit-list-form">
-  <%= form_for([current_user, @list]) do |f| %>
+  <%= form_for ([current_user, @list]) do |f| %>
     <%= f.text_field :title %>
     <%= f.submit "Update list title", :class => "btn-title-upd", :disabled => true %>
   <% end %>
 </div>
 
-<%= form_for([current_user, @list, @item]) do |f| %> 
-  <%= f.text_field :todo %>
+<%= form_for [current_user, @list, @item], remote: true do |f| %> 
+  <%= f.text_field :todo, placeholder: "What to do?" %>
   <%= f.submit "Add item", :class => "btn-add-item", :disabled => true %>
 <% end %>
 
-<ul>
-  <% @items.each do |item| %>
-    <li><%= item.todo %><%= link_to "delete", [current_user, @list, item], method: :delete %></li>
-  <% end %>
-</ul>
+<%= render partial: "items/items" %>
 
 <div class="time">
   <p>Created: <%= @list.created_at %></p>

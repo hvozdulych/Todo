@@ -4,24 +4,25 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:list_id])
+    @list = current_user.lists.find(params[:list_id])
     @item = @list.items.new(items_param)
 
-    if @item.save
-      redirect_to user_list_path(@user.id, @list.id)
-    else
-      redirect_to :back
+    respond_to do |format|
+      if @item.save
+        format.html {redirect_to user_list_path(current_user, @list)}
+        format.js
+      end
     end
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:list_id])
+    @list = current_user.lists.find(params[:list_id])
     @item = @list.items.find(params[:id])
-
     @item.destroy
-    redirect_to user_list_path(@user.id, @list.id)
+    respond_to do |format|
+      format.html {redirect_to user_list_path(current_user, current_user)}
+      format.js
+    end
   end
 
 
