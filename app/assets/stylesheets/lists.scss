@@ -5,3 +5,9 @@
 .all_lists li {list-style-type: none; border-bottom: 1px solid #333; padding: 5px 0; margin-bottom: 2px; }
 .show_list {color: green;}
 .remove_list {display: none; color: red; float: right;}
+
+.list_header {display: inline;}
+.edit-list-form {display: none;}
+
+#update_list_litle {font-weight: normal; font-size: 11px; color: #f00; cursor: pointer; text-decoration: underline;}
+#update_list_litle:hover {text-decoration: none;}

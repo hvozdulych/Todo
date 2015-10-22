@@ -17,5 +17,30 @@ my_ready_function = ->
     -> $(".remove_list", this).fadeOut(800)
   )
 
+  toggleFlag = false
+  $("#update_list_litle").click ->
+    toggleFlag = !toggleFlag
+    if (toggleFlag == true)
+      $(this).text("(cancel)")
+      $(".edit-list-form").slideDown()
+    else
+      $(this).text("(update)")
+      $(".edit-list-form").slideUp()
+  
+
+  $(".edit-list-form form").submit (event) ->
+    event.preventDefault()
+    url = $(this).attr("action")
+    newTitle = $("#list_title").val()
+
+    $.ajax
+      type: 'put'
+      url: url
+      data: { list: { title: newTitle } }
+      dataType: 'json'
+      success: (my_json) ->
+        $(".list_header").text(my_json.title).effect("highlight", 2000)
+
+
 $(document).ready(my_ready_function)
 $(document).on('page:load', my_ready_function)

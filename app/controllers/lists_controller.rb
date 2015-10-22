@@ -36,8 +36,9 @@ class ListsController < ApplicationController
   def update
     @list = current_user.lists.find(params[:id])
 
+
     if @list.update_attributes(list_params)
-      redirect_to user_list_path
+      render json: @list.to_json(only: :title)
     else
       render 'show'
     end
